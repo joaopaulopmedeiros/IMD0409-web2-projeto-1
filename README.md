@@ -1,8 +1,8 @@
 # IMD0408 - Tech Move
 
 ## Descrição
-Projeto destinado à disciplina de IMD0408 (Web 2)
+Sistema para gerenciamento de atividade física e saúde.
 
 ## Como executar
-`npm run watch`
-`mvn spring-boot:run`
+1. Digite `npm run watch`
+2. Digite `mvn spring-boot:run`
