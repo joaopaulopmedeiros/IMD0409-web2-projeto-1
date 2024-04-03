@@ -1,0 +1,16 @@
+{
+  "name": "tech-move",
+  "version": "1.0.0",
+  "description": "Tech Move's front-end",
+  "main": "index.js",
+  "scripts": {
+    "build": "tailwindcss -i ./src/main/resources/static/main.css",
+    "watch": "tailwindcss -i ./src/main/resources/static/main.css --watch"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "tailwindcss": "^3.4.3"
+  }
+}
