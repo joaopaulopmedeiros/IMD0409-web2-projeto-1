@@ -4,13 +4,14 @@
   "description": "Tech Move's front-end",
   "main": "index.js",
   "scripts": {
-    "build": "tailwindcss -i ./src/main/resources/static/main.css",
-    "watch": "tailwindcss -i ./src/main/resources/static/main.css --watch"
+    "build": "tailwindcss -i ./src/main/resources/static/input.css -o ./src/main/resources/static/output.css",
+    "watch": "tailwindcss -i ./src/main/resources/static/input.css -o ./src/main/resources/static/output.css --watch"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "tailwindcss": "^3.4.3"
+    "tailwindcss": "^3.4.3",
+    "flowbite": "^1.4.7"
   }
 }
