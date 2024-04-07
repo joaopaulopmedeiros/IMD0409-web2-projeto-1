@@ -19,15 +19,15 @@
     <aside class="relative bg-purple-700 h-screen w-64 hidden sm:block shadow-xl">
         <div class="p-6">
             <a href="/" class="text-white text-3xl font-semibold uppercase hover:text-gray-300">Admin</a>
-            <a th:href="@{/dashboard/activity-form}" onclick="console.log('Link clicado')" class="w-full bg-white cta-btn font-semibold py-2 mt-5 rounded-br-lg rounded-bl-lg rounded-tr-lg shadow-lg hover:shadow-xl hover:bg-gray-300 flex items-center justify-center">
-                Registrar
-            </a>            
+            <button class="w-full bg-white cta-btn font-semibold py-2 mt-5 rounded-br-lg rounded-bl-lg rounded-tr-lg shadow-lg hover:shadow-xl hover:bg-gray-300 flex items-center justify-center">
+                <i class="fas fa-edit mr-3"></i> Registrar
+            </button>
         </div>
         <nav class="text-white text-base font-semibold pt-3" aria-label="Menu de navegação">
-            <a href="#" class="flex items-center bg-purple-600 text-white py-4 pl-6 nav-item nave-item:hover">
+            <a href="#" class="flex items-center bg-purple-600 text-white py-4 pl-6 nav-item">
                 <i class="fas fa-tachometer-alt mr-3"></i>
                 Dashboard
-            </a>            
+            </a>
         </nav>
     </aside>
 
@@ -41,10 +41,7 @@
                 </button>
                 <button x-show="isOpen" @click="isOpen = false" class="h-full w-full fixed inset-0 cursor-default"></button>
                 <div x-show="isOpen" class="absolute w-32 bg-white rounded-lg shadow-lg py-2 mt-16">
-                    <form id="signoutForm" th:action="@{/signout}" method="post">
-                        <!--<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />-->
-                        <button type="submit" class="block px-4 py-2 account-link hover:text-purple-600">Sign Out</button>
-                    </form>                    
+                    <a href="/" class="block px-4 py-2 account-link hover:text-purple-600">Sign Out</a>
                 </div>
             </div>
         </header>
@@ -52,8 +49,8 @@
         <!-- Mobile Header & Nav -->
         <header x-data="{ isOpen: false }" class="w-full bg-purple-600 py-5 px-6 sm:hidden">
             <div class="flex items-center justify-between">
-                <a href="#" class="text-3xl font-semibold uppercase hover:text-gray-300">Admin</a>
-                <button @click="isOpen = !isOpen" class="text-3xl focus:outline-none">
+                <a href="#" class="text-white text-3xl font-semibold uppercase hover:text-gray-300">Admin</a>
+                <button @click="isOpen = !isOpen" class="text-white text-3xl focus:outline-none">
                     <i x-show="!isOpen" class="fas fa-bars"></i>
                     <i x-show="isOpen" class="fas fa-times"></i>
                 </button>
@@ -61,17 +58,14 @@
 
             <!-- Dropdown Nav -->
             <nav :class="isOpen ? 'flex': 'hidden'" class="flex flex-col pt-4" aria-label="Dropdown">
-                <a href="#" class="flex items-center active-nav-link py-2 pl-4 nav-item">
+                <a href="#" class="flex items-center active-nav-link text-white py-2 pl-4 nav-item">
                     <i class="fas fa-tachometer-alt mr-3"></i>
                     Dashboard
                 </a>
-                <form id="signoutForm" th:action="@{/signout}" method="post">
-                    <!--<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />-->
-                    <button type="submit" class="flex items-center opacity-75 hover:opacity-100 py-2 pl-4 nav-item">
-                        <i class="fas fa-sign-out-alt mr-3"></i>
-                        Sign Out
-                    </button>
-                </form>
+                <a href="#" class="flex items-center text-white opacity-75 hover:opacity-100 py-2 pl-4 nav-item">
+                    <i class="fas fa-sign-out-alt mr-3"></i>
+                    Sign Out
+                </a>
             </nav>
         </header>
     
@@ -106,5 +100,10 @@
         </div>
         
     </div>
+
+    <!-- AlpineJS -->
+    <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
+    <!-- Font Awesome -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/js/all.min.js" integrity="sha256-KzZiKy0DWYsnwMF+X1DvQngQ2/FxF7MF3Ff72XcpuPs=" crossorigin="anonymous"></script>
 </body>
 </html>
