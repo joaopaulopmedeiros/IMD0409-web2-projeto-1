@@ -21,6 +21,7 @@ public class RankingService {
         guild.setName("Super Guild");
 
         var user = new User();
+        user.setName("João Paulo Medeiros");
         user.setEmail("joao@email.com");
         user.setScore(97.5);
         List<User> users = List.of(user);

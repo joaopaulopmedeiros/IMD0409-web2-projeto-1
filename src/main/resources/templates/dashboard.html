@@ -125,10 +125,10 @@
                                 </tr>
                             </thead>
                             <tbody class="text-gray-700">
-                                <tr>
-                                    <td class="w-1/3 text-left py-3 px-4">João Paulo Medeiros</td>
-                                    <td class="text-left py-3 px-4">jonsmith@mail.com</td>
-                                    <td class="text-left py-3 px-4">76.0</td>
+                                <tr th:each="user: ${ranking.users}">
+                                    <td class="w-1/3 text-left py-3 px-4" th:text="${user.name}"></td>
+                                    <td class="text-left py-3 px-4" th:text="${user.email}"></td>
+                                    <td class="text-left py-3 px-4" th:text="${user.score}"></td>
                                 </tr>
                             </tbody>
                         </table>
