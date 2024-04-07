@@ -1,14 +1,15 @@
 package com.github.techmove.models;
 
+import java.util.List;
+
 import lombok.Getter;
 import lombok.Setter;
 
 @Getter
 @Setter
 public class Ranking {
-    private Integer position;
     private Integer month;
     private Integer year;
-    private User user;
     private Guild guild;    
+    private List<User> users;
 }
