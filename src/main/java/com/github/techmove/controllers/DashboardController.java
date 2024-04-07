@@ -7,10 +7,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 import com.github.techmove.services.RankingService;
 
+import lombok.AllArgsConstructor;
+
 @Controller
+@AllArgsConstructor(onConstructor = @__(@Autowired))
 public class DashboardController 
 {
-    @Autowired
     private RankingService service;
 
     @GetMapping("/dashboard")
