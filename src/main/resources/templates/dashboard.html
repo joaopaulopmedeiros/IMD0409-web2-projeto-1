@@ -27,11 +27,7 @@
             <a href="#" class="flex items-center bg-purple-600 text-white py-4 pl-6 nav-item">
                 <i class="fas fa-tachometer-alt mr-3"></i>
                 Dashboard
-            </a>
-            <form id="signoutFormResponsive" th:action="@{/signout}" method="post">
-                <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
-                <button type="submit" class="block px-4 py-2 account-link hover:text-purple-600">Sign Out</button>
-            </form>            
+            </a>            
         </nav>
     </aside>
 
