@@ -16,7 +16,7 @@ public class DashboardController
     private RankingService service;
 
     @GetMapping("/dashboard")
-    public String dashboard(Model model)
+    public String show(Model model)
     {
         var ranking = service.getByCurrentDate();
         model.addAttribute("ranking", ranking);
