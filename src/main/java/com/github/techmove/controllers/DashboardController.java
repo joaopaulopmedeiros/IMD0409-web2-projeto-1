@@ -20,6 +20,12 @@ public class DashboardController
     {
         var ranking = service.getByCurrentDate();
         model.addAttribute("ranking", ranking);
-        return "dashboard";
-    }     
+        return "dashboard/index";
+    }    
+    
+    @GetMapping("/dashboard/activity-form")
+    public String showActivityForm(Model model)
+    {
+        return "dashboard/activity-form";
+    }    
 }
