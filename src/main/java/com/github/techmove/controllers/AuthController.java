@@ -8,19 +8,19 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Controller
 public class AuthController 
 {
-    @GetMapping("/login")
+    @GetMapping("/signin")
     public String show()
     {
-        return "login";
+        return "signin";
     }    
 
-    @PostMapping("/login")
-    public String login(@RequestParam String email, @RequestParam String password) {        
+    @PostMapping("/signin")
+    public String signin(@RequestParam String email, @RequestParam String password) {        
         return "redirect:/dashboard"; 
     }   
 
-    @PostMapping("/logout")
-    public String logout() {        
+    @PostMapping("/signout")
+    public String signout() {        
         return "redirect:/"; 
     }       
 }
