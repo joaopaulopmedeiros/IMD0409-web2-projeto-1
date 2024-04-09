@@ -1,7 +1,5 @@
 package com.github.techmove.models;
 
-import java.util.List;
-
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -11,25 +9,13 @@ import lombok.Getter;
 import lombok.Setter;
 
 @Entity
-@Table(name = "users")
+@Table(name = "categories")
 @Getter
 @Setter
-public class User {
+public class Category {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
+    
     private String name;
-
-    private String email;
-
-    private String salt;
-
-    private String hash;
-
-    //private List<Activity> activities;
-
-    private double score;
-
-    //private Guild guild;    
 }
