@@ -23,7 +23,7 @@ public class AuthController {
         return "auth/signin";
     }    
 
-    @PostMapping("/signin")
+    @PostMapping("/authenticate")
     public String signin(@RequestParam String email, @RequestParam String password) {
         Authentication authentication = authenticationManager.authenticate(
             new UsernamePasswordAuthenticationToken(email, password)
