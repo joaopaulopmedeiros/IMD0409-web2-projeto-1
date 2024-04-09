@@ -7,6 +7,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.github.techmove.services.AuthManager;
+
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 
@@ -18,7 +20,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 @AllArgsConstructor(onConstructor = @__(@Autowired))
 @Log4j2
 public class AuthController {
-    private AuthenticationManager authenticationManager;
+    private AuthManager authManager;
 
 
     @GetMapping("/signin")
@@ -29,7 +31,7 @@ public class AuthController {
     @PostMapping("/authenticate")
     public String signin(@RequestParam String email, @RequestParam String password) {
         log.info("hiii");
-        Authentication authentication = authenticationManager.authenticate(
+        Authentication authentication = authManager.authenticate(
             new UsernamePasswordAuthenticationToken(email, password)
         );
 

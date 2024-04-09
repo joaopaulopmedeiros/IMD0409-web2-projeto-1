@@ -45,6 +45,10 @@ public class SecurityConfig {
                         .defaultSuccessUrl("/user")
                 )
                 .logout(c -> c.logoutSuccessUrl("/logout"))
+                .securityMatcher("/dashboard*")
+                .authorizeHttpRequests(c -> c
+                        .anyRequest().permitAll()
+                )
                 .build();
     }
 
