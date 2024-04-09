@@ -1,24 +1,26 @@
 package com.github.techmove.services;
 
 import java.time.LocalDateTime;
-import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.github.techmove.infra.repositories.UserRepository;
 import com.github.techmove.models.Guild;
 import com.github.techmove.models.Ranking;
-import com.github.techmove.models.User;
 
 @Service
 public class RankingService {
+
+    @Autowired
+    private UserRepository repository;
 
     public Ranking getByCurrentDate() {
         
         LocalDateTime now = LocalDateTime.now();
         
-        var guild = Guild.builder().id(1L).name("Super Guild").build();
-        var user = User.builder().name("João Paulo Medeiros").email("joao@email.com").score(97.5).build();
-        List<User> users = List.of(user);
+        var guild = Guild.builder().id(1L).name("IMD Guild").build();
+        var users = repository.findByGuild(guild.getId());
 
         return Ranking.builder()
             .month(now.getMonthValue())

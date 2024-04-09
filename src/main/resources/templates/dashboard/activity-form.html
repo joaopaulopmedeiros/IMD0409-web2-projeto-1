@@ -10,9 +10,11 @@
         <form class="mx-auto my-3" th:action="@{/dashboard/activity/publish}" method="post">
             <label for="categories" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Selecione a categoria da atividade</label>
             <select id="categories"
+                name="categoryId"
                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-80 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                 <option th:each="category : ${categories}" th:value="${category.id}" th:text="${category.name + ' - ' + #numbers.formatDecimal(category.score, 0, 'POINT', 2, 'COMMA') + ' pontos'}"></option>
             </select>
+            <input type="hidden" value="joao@email.com" name="email">
             <button type="Submit" class="my-3 text-white bg-purple-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">Publicar</button>
         </form>
 

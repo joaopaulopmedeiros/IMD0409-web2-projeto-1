@@ -24,29 +24,33 @@ public class ActivityService
     private CategoryRepository categoryRepository;
 
 
-    public void publish(Long userId, Long categoryId) 
+    public void publish(String email, Long categoryId) 
     {
-        Optional<User> user = userRepository.findById(userId);
+        User user = userRepository.findByEmail(email);
 
-        if (user.isEmpty()) 
+        if (user == null) 
         {
-            throw new IllegalArgumentException("Usuário não encontrado com o ID: " + userId);
+            throw new IllegalArgumentException("Usuário não encontrado com o email: " + email);
         }
 
         Optional<Category> category = categoryRepository.findById(categoryId);
 
-        if (category.isEmpty()) 
+        if (category.isEmpty())
         {
             throw new IllegalArgumentException("Categoria não encontrada com o ID: " + categoryId);
         }
 
         var activity = Activity.builder()
-        .user(user.get())
+        .user(user)
         .category(category.get())
         .publishedAt(LocalDateTime.now())
         .build();
 
         activityRepository.save(activity);
+
+        user.setScore(user.getScore() + category.get().getScore());
+
+        userRepository.save(user);
     }    
 
 }

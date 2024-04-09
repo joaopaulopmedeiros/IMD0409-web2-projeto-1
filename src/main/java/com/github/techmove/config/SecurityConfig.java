@@ -1,27 +1,24 @@
 package com.github.techmove.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.ApplicationListener;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.annotation.Order;
 import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.authentication.event.AuthenticationSuccessEvent;
+import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 
-import com.github.techmove.services.AuthManager;
-
-import lombok.extern.log4j.Log4j2;
 
 @Configuration
-@Log4j2
+@EnableWebSecurity
+@EnableMethodSecurity
 public class SecurityConfig {
-
     @Autowired
-    private AuthManager authManager;
+    private CustomAuthenticationProvider customAuthenticationProvider;
 
     @Bean
     @Order(0)
@@ -38,6 +35,7 @@ public class SecurityConfig {
     @Bean
     SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         return http
+            .authenticationProvider(customAuthenticationProvider)
                 .formLogin(c -> c.loginPage("/signin")
                         .loginProcessingUrl("/authenticate")
                         .usernameParameter("email")
@@ -45,10 +43,10 @@ public class SecurityConfig {
                         .defaultSuccessUrl("/dashboard")
                 )
                 .logout(c -> c.logoutSuccessUrl("/logout"))
-                .securityMatcher("/dashboard*")
-                .authorizeHttpRequests(c -> c
-                        .anyRequest().permitAll()
-                )
+                .securityMatcher("/dashboard")
+                // .authorizeHttpRequests(c -> c
+                //         .anyRequest().authenticated()
+                // )
                 .build();
     }
 
@@ -59,15 +57,8 @@ public class SecurityConfig {
     }
 
     @Bean
-    AuthenticationManager authenticationManager()
-    {
-        return authManager;
+    AuthenticationManager authenticationManager() throws Exception {
+        return authentication -> customAuthenticationProvider.authenticate(authentication);
     }
-
-
-    @Bean
-    ApplicationListener<AuthenticationSuccessEvent> successLogger() {
-        return event -> log.info("success: {}", event.getAuthentication());
-    }    
 
 }

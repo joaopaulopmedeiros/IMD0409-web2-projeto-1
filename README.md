@@ -9,3 +9,8 @@ Sistema para gerenciamento de atividade física e saúde através da competiçã
 1. Digite `npm install`
 2. Digite `npm run watch`
 3. Digite `mvn spring-boot:run`
+
+
+## Tecnologias
+- Spring Boot MVC
+- Tailwind

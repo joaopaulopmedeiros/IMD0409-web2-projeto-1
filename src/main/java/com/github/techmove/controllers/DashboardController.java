@@ -1,7 +1,6 @@
 package com.github.techmove.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.actuate.endpoint.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -41,9 +40,9 @@ public class DashboardController
     }    
 
     @PostMapping("/dashboard/activity/publish")
-    public String publishActivity(Model model, @RequestParam("userId") Long userId, @RequestParam("categories") Long categoryId)
+    public String publishActivity(Model model, @RequestParam("email") String email, @RequestParam("categoryId") Long categoryId)
     {
-        activityService.publish(userId, categoryId);
+        activityService.publish(email, categoryId);
         return "redirect:/dashboard";
     }    
 }
