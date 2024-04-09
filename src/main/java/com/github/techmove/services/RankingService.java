@@ -16,14 +16,8 @@ public class RankingService {
         
         LocalDateTime now = LocalDateTime.now();
         
-        var guild = new Guild();
-        guild.setId(1L);
-        guild.setName("Super Guild");
-
-        var user = User.builder().build();
-        user.setName("João Paulo Medeiros");
-        user.setEmail("joao@email.com");
-        user.setScore(97.5);
+        var guild = Guild.builder().id(1L).name("Super Guild").build();
+        var user = User.builder().name("João Paulo Medeiros").email("joao@email.com").score(97.5).build();
         List<User> users = List.of(user);
 
         return Ranking.builder()
