@@ -1,5 +1,6 @@
 package com.github.techmove.controllers;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -7,7 +8,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.github.techmove.services.AuthService;
 
+import lombok.AllArgsConstructor;
+
 @Controller
+@AllArgsConstructor(onConstructor = @__(@Autowired))
 public class AuthController 
 {
     private AuthService authService;
