@@ -5,7 +5,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
+import com.github.techmove.services.ActivityService;
 import com.github.techmove.services.CategoryService;
 import com.github.techmove.services.RankingService;
 
@@ -17,6 +19,7 @@ public class DashboardController
 {
     private RankingService rankingService;
     private CategoryService categoryService;
+    private ActivityService activityService;
 
     @GetMapping("/dashboard")
     public String show(Model model)
@@ -35,8 +38,9 @@ public class DashboardController
     }    
 
     @PostMapping("/dashboard/activity/publish")
-    public String publishActivity(Model model)
+    public String publishActivity(Model model, @RequestParam("userId") Long userId, @RequestParam("categories") Long categoryId)
     {
+        activityService.publish(userId, categoryId);
         return "redirect:/dashboard";
     }    
 }
