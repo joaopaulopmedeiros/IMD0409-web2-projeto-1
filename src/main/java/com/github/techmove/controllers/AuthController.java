@@ -1,5 +1,7 @@
 package com.github.techmove.controllers;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.stereotype.Controller;
@@ -10,18 +12,17 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.github.techmove.services.AuthManager;
 
 import lombok.AllArgsConstructor;
-import lombok.extern.log4j.Log4j2;
+import lombok.extern.slf4j.Slf4j;
 
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 
 @Controller
+@Slf4j
 @AllArgsConstructor(onConstructor = @__(@Autowired))
-@Log4j2
 public class AuthController {
-    private AuthManager authManager;
-
+    private AuthenticationManager authManager;
 
     @GetMapping("/signin")
     public String show() {

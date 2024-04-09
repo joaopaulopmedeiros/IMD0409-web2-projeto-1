@@ -42,12 +42,12 @@ public class SecurityConfig {
                         .loginProcessingUrl("/authenticate")
                         .usernameParameter("email")
                         .passwordParameter("password")
-                        .defaultSuccessUrl("/user")
+                        .defaultSuccessUrl("/dashboard")
                 )
                 .logout(c -> c.logoutSuccessUrl("/logout"))
                 .securityMatcher("/dashboard*")
                 .authorizeHttpRequests(c -> c
-                        .anyRequest().permitAll()
+                        .anyRequest().authenticated()
                 )
                 .build();
     }
