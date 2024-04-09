@@ -1,11 +1,15 @@
 package com.github.techmove.infra.seeds;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
+import com.github.techmove.infra.repositories.CategoryRepository;
 import com.github.techmove.infra.repositories.GuildRepository;
 import com.github.techmove.infra.repositories.UserRepository;
+import com.github.techmove.models.Category;
 import com.github.techmove.models.Guild;
 import com.github.techmove.models.User;
 
@@ -17,6 +21,7 @@ public class DatabaseSeeder implements CommandLineRunner
 {
 
     private UserRepository userRepository;
+    private CategoryRepository categoryRepository;
     private GuildRepository guildRepository;
 
     @Override
@@ -29,9 +34,15 @@ public class DatabaseSeeder implements CommandLineRunner
         {         
             guild = Guild.builder().name("IMD Guild").build();
             guildRepository.save(guild);   
-        } else 
-        {
-            guild = guildRepository.getReferenceById(0L); 
+        }
+
+        if (categoryRepository.count() == 0) 
+        {         
+            List<Category> categories = List.of(
+                Category.builder().name("Comer fruta").score(10).build(),
+                Category.builder().name("Fazer atividade física").score(20).build()             
+            );
+            categoryRepository.saveAll(categories);   
         }
 
         if (userRepository.count() == 0) 
