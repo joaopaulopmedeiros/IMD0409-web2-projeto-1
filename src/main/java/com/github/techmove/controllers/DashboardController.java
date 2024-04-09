@@ -25,7 +25,7 @@ public class DashboardController
         return "dashboard/index";
     }    
     
-    @GetMapping("/dashboard/activity-form")
+    @GetMapping("/dashboard/activity/form")
     public String showActivityForm(Model model)
     {
         var categories = categoryService.getAll();
