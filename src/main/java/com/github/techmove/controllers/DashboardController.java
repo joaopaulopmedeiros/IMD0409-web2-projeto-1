@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 
 import com.github.techmove.services.CategoryService;
 import com.github.techmove.services.RankingService;
@@ -31,5 +32,11 @@ public class DashboardController
         var categories = categoryService.getAll();
         model.addAttribute("categories", categories);
         return "dashboard/activity-form";
+    }    
+
+    @PostMapping("/dashboard/activity/publish")
+    public String publishActivity(Model model)
+    {
+        return "redirect:/dashboard";
     }    
 }
