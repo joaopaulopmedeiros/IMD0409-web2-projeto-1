@@ -7,22 +7,22 @@ networks:
 services:
   postgres-server:
     container_name: postgres-server
-    image: postgres:${POSTGRESQL_VERSION}
-    hostname: ${POSTGRESQL_HOST}
+    image: postgres:${POSTGRES_VERSION}
+    hostname: ${POSTGRES_HOST}
     ports:
-      - ${POSTGRESQL_EXTERNAL_PORT}:${POSTGRESQL_PORT}
+      - ${POSTGRES_EXTERNAL_PORT}:${POSTGRES_PORT}
     volumes:
-      - ${POSTGRESQL_PATH}:/var/lib/postgresql/data
+      - ${POSTGRES_PATH}:/var/lib/postgresql/data
     networks:
       - techmove-network
     environment:
-      POSTGRESQL_DB: ${POSTGRESQL_DB}
-      POSTGRESQL_USER: ${POSTGRESQL_USER}
-      POSTGRESQL_PASSWORD: ${POSTGRESQL_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_DB}
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
       TZ: "America/Fortaleza"
     restart: always
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -d $${POSTGRESQL_DB} -U $${POSTGRESQL_USER}"]
+      test: ["CMD-SHELL", "pg_isready -d $${POSTGRES_DB} -U $${POSTGRES_USER}"]
       interval: 10s
       timeout: 30s
       retries: 10
