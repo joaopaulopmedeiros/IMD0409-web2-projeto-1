@@ -16,13 +16,13 @@ services:
     networks:
       - techmove-network
     environment:
-      POSTGRES_DB: ${POSTGRES_DB}
-      POSTGRES_USER: ${POSTGRES_USER}
-      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRESQL_DB: ${POSTGRESQL_DB}
+      POSTGRESQL_USER: ${POSTGRESQL_USER}
+      POSTGRESQL_PASSWORD: ${POSTGRESQL_PASSWORD}
       TZ: "America/Fortaleza"
     restart: always
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -d $${POSTGRES_DB} -U $${POSTGRES_USER}"]
+      test: ["CMD-SHELL", "pg_isready -d $${POSTGRESQL_DB} -U $${POSTGRESQL_USER}"]
       interval: 10s
       timeout: 30s
       retries: 10
