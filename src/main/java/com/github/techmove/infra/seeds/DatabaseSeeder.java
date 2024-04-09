@@ -4,9 +4,9 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Component;
 
-import com.github.techmove.BasicEncoder;
 import com.github.techmove.factories.SaltFactory;
 import com.github.techmove.infra.repositories.CategoryRepository;
 import com.github.techmove.infra.repositories.GuildRepository;
@@ -56,7 +56,7 @@ public class DatabaseSeeder implements CommandLineRunner
             .name("João Paulo Medeiros")
             .email("joao@email.com")
             .salt(salt)
-            .hash(BasicEncoder.encode(passwordWithSalt))
+            .hash(new BCryptPasswordEncoder().encode(passwordWithSalt))
             .score(0)
             .guild(guild)
             .build();

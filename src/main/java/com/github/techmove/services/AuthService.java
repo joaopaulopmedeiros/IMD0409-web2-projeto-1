@@ -4,9 +4,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import com.github.techmove.BasicEncoder;
 import com.github.techmove.infra.repositories.UserRepository;
 import com.github.techmove.models.User;
 
@@ -24,7 +24,7 @@ public class AuthService implements UserDetailsService
 
         if (user != null) 
         {
-            return BasicEncoder.matches(password + user.getSalt(), user.getHash());
+            return new BCryptPasswordEncoder().matches(password + user.getSalt(), user.getHash());
         }
 
         return false;
