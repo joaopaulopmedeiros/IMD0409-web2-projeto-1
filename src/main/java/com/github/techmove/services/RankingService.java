@@ -20,7 +20,7 @@ public class RankingService {
         guild.setId(1L);
         guild.setName("Super Guild");
 
-        var user = new User();
+        var user = User.builder().build();
         user.setName("João Paulo Medeiros");
         user.setEmail("joao@email.com");
         user.setScore(97.5);
