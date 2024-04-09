@@ -1,6 +1,8 @@
 package com.github.techmove.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.actuate.endpoint.SecurityContext;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -26,6 +28,7 @@ public class DashboardController
     {
         var ranking = rankingService.getByCurrentDate();
         model.addAttribute("ranking", ranking);
+        model.addAttribute("email", SecurityContextHolder.getContext().getAuthentication().getName());
         return "dashboard/index";
     }    
     

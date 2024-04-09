@@ -47,7 +47,7 @@ public class SecurityConfig {
                 .logout(c -> c.logoutSuccessUrl("/logout"))
                 .securityMatcher("/dashboard*")
                 .authorizeHttpRequests(c -> c
-                        .anyRequest().authenticated()
+                        .anyRequest().permitAll()
                 )
                 .build();
     }
