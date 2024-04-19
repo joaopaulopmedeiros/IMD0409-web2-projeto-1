@@ -18,7 +18,8 @@ import lombok.Setter;
 @Builder
 @Getter
 @Setter
-public class Category {
+public class Category 
+{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

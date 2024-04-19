@@ -23,7 +23,8 @@ import lombok.Setter;
 @Builder
 @Getter
 @Setter
-public class Activity {
+public class Activity 
+{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

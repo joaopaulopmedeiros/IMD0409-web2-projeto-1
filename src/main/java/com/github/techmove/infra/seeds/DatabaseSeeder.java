@@ -26,9 +26,8 @@ public class DatabaseSeeder implements CommandLineRunner
     private GuildRepository guildRepository;
 
     @Override
-    public void run(String... args) throws Exception {
- 
-        
+    public void run(String... args) throws Exception 
+    {    
         Guild guild = null;
 
         if (guildRepository.count() == 0) 

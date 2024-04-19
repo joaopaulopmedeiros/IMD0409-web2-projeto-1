@@ -9,7 +9,8 @@ import lombok.Setter;
 @Getter
 @Setter
 @Builder
-public class Ranking {
+public class Ranking 
+{
     private Integer month;
     private Integer year;
     private Guild guild;    

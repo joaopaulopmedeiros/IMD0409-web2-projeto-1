@@ -12,8 +12,8 @@ import org.springframework.security.web.csrf.CsrfToken;
 
 @Controller
 @AllArgsConstructor(onConstructor = @__(@Autowired))
-public class AuthController {
-
+public class AuthController 
+{
     @GetMapping("/login")
     public String show(Model model, HttpServletRequest request) {
         CsrfToken csrfToken = (CsrfToken) request.getAttribute(CsrfToken.class.getName());

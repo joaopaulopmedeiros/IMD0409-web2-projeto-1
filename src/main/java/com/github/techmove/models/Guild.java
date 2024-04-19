@@ -18,7 +18,8 @@ import lombok.Setter;
 @Builder
 @Getter
 @Setter
-public class Guild {
+public class Guild 
+{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
