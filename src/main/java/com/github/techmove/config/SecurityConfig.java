@@ -20,13 +20,14 @@ import com.github.techmove.services.CustomUserDetailsService;
 @Configuration
 @EnableWebSecurity
 @EnableMethodSecurity
-public class SecurityConfig {
-
+public class SecurityConfig 
+{
     @Autowired
     private CustomUserDetailsService customUserDetailsService;
 
     @Bean
-    SecurityFilterChain resources(HttpSecurity http) throws Exception {
+    SecurityFilterChain resources(HttpSecurity http) throws Exception 
+    {
         return http
                 .securityMatcher("/images/**", "/**.css", "/**.js")
                 .authorizeHttpRequests(c -> c.anyRequest().permitAll())
@@ -37,7 +38,12 @@ public class SecurityConfig {
     }
 
     @Bean
-    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+    SecurityFilterChain filterChain(HttpSecurity http) throws Exception 
+    {
+        http.authorizeHttpRequests(authz -> authz
+            .requestMatchers("/").permitAll()
+        );
+
         http.authorizeHttpRequests(authz -> authz
             .requestMatchers("/login", "/error").permitAll()
             .anyRequest().authenticated()
