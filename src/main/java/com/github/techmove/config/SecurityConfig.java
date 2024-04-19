@@ -1,9 +1,7 @@
 package com.github.techmove.config;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.core.annotation.Order;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
@@ -22,9 +20,6 @@ import com.github.techmove.services.CustomUserDetailsService;
 @EnableMethodSecurity
 public class SecurityConfig 
 {
-    @Autowired
-    private CustomUserDetailsService customUserDetailsService;
-
     @Bean
     SecurityFilterChain resources(HttpSecurity http) throws Exception 
     {
@@ -70,7 +65,7 @@ public class SecurityConfig
     }
 
     @Bean
-    public AuthenticationProvider authenticationProvider() {
+    AuthenticationProvider authenticationProvider(CustomUserDetailsService customUserDetailsService) {
         DaoAuthenticationProvider authenticationProvider = new DaoAuthenticationProvider();
         authenticationProvider.setUserDetailsService(customUserDetailsService);
         authenticationProvider.setPasswordEncoder(passwordEncoder());
