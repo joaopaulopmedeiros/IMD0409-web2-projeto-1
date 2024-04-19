@@ -17,7 +17,7 @@ public interface UserRepository extends JpaRepository<User, Long>
     "JOIN User u ON a.user.id = u.id " +
     "JOIN Category c ON c.id = a.category.id " +
     "WHERE u.guild.id = :guildId " +
-    "GROUP BY u.id, u.name, u.email")
-List<User> findByGuild(@Param("guildId") Long guildId);
-
+    "GROUP BY u.id, u.name, u.email " +
+    "ORDER BY u.score DESC")
+    List<User> findByGuild(@Param("guildId") Long guildId);
 }

@@ -35,6 +35,10 @@ public class DatabaseSeeder implements CommandLineRunner
         {         
             guild = Guild.builder().name("IMD Guild").build();
             guildRepository.save(guild);   
+        } else 
+        {
+            var retrievedGuild = guildRepository.findById(1L);
+            if (retrievedGuild.isPresent()) guild = retrievedGuild.get();
         }
 
         if (categoryRepository.count() == 0) 
