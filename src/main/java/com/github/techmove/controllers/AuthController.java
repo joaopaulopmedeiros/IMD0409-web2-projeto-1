@@ -1,38 +1,29 @@
 package com.github.techmove.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
+import jakarta.servlet.http.HttpServletRequest;
 import lombok.AllArgsConstructor;
 
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.web.csrf.CsrfToken;
 
 @Controller
 @AllArgsConstructor(onConstructor = @__(@Autowired))
 public class AuthController {
-    private AuthenticationManager authManager;
 
-    @GetMapping("/signin")
-    public String show() {
-        return "auth/signin";
+    @GetMapping("/login")
+    public String show(Model model, HttpServletRequest request) {
+        CsrfToken csrfToken = (CsrfToken) request.getAttribute(CsrfToken.class.getName());
+        if (csrfToken != null) {
+            model.addAttribute("_csrf", csrfToken);
+        }
+        return "auth/login";
     }    
-
-    @PostMapping("/authenticate")
-    public String signin(@RequestParam String email, @RequestParam String password) {
-        Authentication authentication = authManager.authenticate(
-            new UsernamePasswordAuthenticationToken(email, password)
-        );
-
-        SecurityContextHolder.getContext().setAuthentication(authentication);
-
-        return "redirect:/dashboard";
-    }
 
     @PostMapping("/signout")
     public String signout() {

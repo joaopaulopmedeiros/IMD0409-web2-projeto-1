@@ -7,7 +7,6 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Component;
 
-import com.github.techmove.factories.SaltFactory;
 import com.github.techmove.infra.repositories.CategoryRepository;
 import com.github.techmove.infra.repositories.GuildRepository;
 import com.github.techmove.infra.repositories.UserRepository;
@@ -49,14 +48,12 @@ public class DatabaseSeeder implements CommandLineRunner
 
         if (userRepository.count() == 0) 
         {
-            String salt = SaltFactory.create();
-            String passwordWithSalt = "123456" + salt;
+            String password = "123456";
 
             User user = User.builder()
             .name("João Paulo Medeiros")
             .email("joao@email.com")
-            .salt(salt)
-            .hash(new BCryptPasswordEncoder().encode(passwordWithSalt))
+            .password(new BCryptPasswordEncoder().encode(password))
             .score(0)
             .guild(guild)
             .build();

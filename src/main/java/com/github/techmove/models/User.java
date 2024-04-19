@@ -34,9 +34,7 @@ public class User {
     @Column(unique = true)
     private String email;
 
-    private String salt;
-
-    private String hash;
+    private String password;
 
     @OneToMany(mappedBy = "user")
     private List<Activity> activities;
