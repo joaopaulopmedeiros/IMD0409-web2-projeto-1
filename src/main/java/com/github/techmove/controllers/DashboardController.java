@@ -40,9 +40,9 @@ public class DashboardController
     }    
 
     @PostMapping("/dashboard/activity/publish")
-    public String publishActivity(Model model, @RequestParam("email") String email, @RequestParam("categoryId") Long categoryId)
+    public String publishActivity(Model model, @RequestParam("categoryId") Long categoryId)
     {
-        activityService.publish(email, categoryId);
+        activityService.publish(SecurityContextHolder.getContext().getAuthentication().getName(), categoryId);
         return "redirect:/dashboard";
     }    
 }
