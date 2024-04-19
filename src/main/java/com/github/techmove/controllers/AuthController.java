@@ -25,8 +25,8 @@ public class AuthController {
         return "auth/login";
     }    
 
-    @PostMapping("/signout")
-    public String signout() {
+    @PostMapping("/logout")
+    public String logout() {
         SecurityContextHolder.clearContext();
         return "redirect:/";
     }  

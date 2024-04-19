@@ -45,6 +45,7 @@ public class SecurityConfig {
 
         http.formLogin(authz -> authz
             .loginPage("/login").permitAll()
+            .defaultSuccessUrl("/dashboard")
         );
 
         http.logout(authz -> authz
