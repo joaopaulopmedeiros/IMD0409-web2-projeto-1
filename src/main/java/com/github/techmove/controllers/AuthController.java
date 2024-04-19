@@ -4,12 +4,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
 
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.AllArgsConstructor;
 
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.csrf.CsrfToken;
 
 @Controller
@@ -24,10 +22,4 @@ public class AuthController {
         }
         return "auth/login";
     }    
-
-    @PostMapping("/logout")
-    public String logout() {
-        SecurityContextHolder.clearContext();
-        return "redirect:/";
-    }  
 }

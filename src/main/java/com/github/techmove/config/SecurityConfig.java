@@ -49,6 +49,8 @@ public class SecurityConfig {
         );
 
         http.logout(authz -> authz
+            .logoutSuccessUrl("/")
+            .invalidateHttpSession(true)
             .deleteCookies("JSESSIONID")
             .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
         );
